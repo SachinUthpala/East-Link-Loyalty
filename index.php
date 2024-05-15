@@ -1,3 +1,7 @@
+<?php
+require_once './BackEnd/DB.Conn.Php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
