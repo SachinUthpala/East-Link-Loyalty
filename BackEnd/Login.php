@@ -1,6 +1,6 @@
 <?php
 //db connections
-require_once './DB.Conn.Php';
+require_once './DB.Conn.php';
 session_start();
 
 
@@ -51,7 +51,7 @@ if(isset($_POST['login'])){
 
             if($password == $userPass){
                 $_SESSION['login sucessfull'] = 1;
-                header("Location: ./InsertData.php");
+                header("Location: ./InsetData.php");
                 //F:\East Link Loyalty\UserPages\UserPage.html
             }else{
                 $_SESSION['wrong_pass'] = 1;

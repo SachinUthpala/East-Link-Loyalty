@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Db.conn.php'; // Assuming this file contains your database connection code
+require_once '../DB.Conn.php'; // Assuming this file contains your database connection code
 session_start();
 
 $year = date("Y");

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Db.conn.php';
+require_once '../DB.Conn.php';
 session_start();
 
 $year = date("Y");

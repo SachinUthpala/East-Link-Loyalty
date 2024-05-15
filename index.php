@@ -1,5 +1,5 @@
 <?php
-require_once './BackEnd/DB.Conn.Php';
+require_once './BackEnd/DB.Conn.php';
 session_start();
 ?>
 
