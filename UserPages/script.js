@@ -1,32 +1,26 @@
-const body = document.querySelector("body"),
-      modeToggle = body.querySelector(".mode-toggle");
-      sidebar = body.querySelector("nav");
-      sidebarToggle = body.querySelector(".sidebar-toggle");
+const menuOpen = document.getElementById('menu-open');
+const menuClose = document.getElementById('menu-close');
+const sideBar = document.querySelector('.container .left-section');
+const sidebarItems = document.querySelectorAll('.container .left-section .sidebar .item');
 
-let getMode = localStorage.getItem("mode");
-if(getMode && getMode ==="dark"){
-    body.classList.toggle("dark");
-}
-
-let getStatus = localStorage.getItem("status");
-if(getStatus && getStatus ==="close"){
-    sidebar.classList.toggle("close");
-}
-
-modeToggle.addEventListener("click", () =>{
-    body.classList.toggle("dark");
-    if(body.classList.contains("dark")){
-        localStorage.setItem("mode", "dark");
-    }else{
-        localStorage.setItem("mode", "light");
-    }
+menuOpen.addEventListener('click', () => {
+    sideBar.style.top = '0';
 });
 
-sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-    if(sidebar.classList.contains("close")){
-        localStorage.setItem("status", "close");
-    }else{
-        localStorage.setItem("status", "open");
-    }
-})
+menuClose.addEventListener('click', () => {
+    sideBar.style.top = '-60vh';
+});
+
+let activeItem = sidebarItems[0];
+
+sidebarItems.forEach(element => {
+    element.addEventListener('click', () => {
+        if (activeItem) {
+            activeItem.removeAttribute('id');
+        }
+
+        element.setAttribute('id', 'active');
+        activeItem = element;
+
+    });
+});

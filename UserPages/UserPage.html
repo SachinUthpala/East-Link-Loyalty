@@ -1,177 +1,257 @@
 <!DOCTYPE html>
-<!--=== Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!----======== CSS ======== -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-     
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
-    <title>Admin Dashboard Panel</title> 
+    <title>Responsive Dashboard Design #01 | AsmrProg</title>
 </head>
+
 <body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="images/logo.png" alt="">
+
+    <div class="container">
+
+        <aside class="left-section">
+            <div class="logo">
+                <button class="menu-btn" id="menu-close">
+                    <i class='bx bx-log-out-circle'></i>
+                </button>
+                <h2>East-<span style="color: rgb(253, 42, 42);">Link</span></h2>
             </div>
 
-            <span class="logo_name">CodingLab</span>
-        </div>
+            <div class="sidebar">
+                <div class="item" id="active" onclick="displyDash()">
+                    <i class='bx bx-home-alt-2'></i>
+                    <a href="#">Overview</a>
+                </div>
+                <div class="item" onclick="displyUsers()">
+                    <i class='bx bx-grid-alt'></i>
+                    <a href="#">Users</a>
+                </div>
+                <div class="item">
+                    <i class='bx bx-folder'></i>
+                    <a href="#">Resources</a>
+                </div>
+                <div class="item">
+                    <i class='bx bx-message-square-dots'></i>
+                    <a href="#">Message</a>
+                </div>
+                <div class="item">
+                    <i class='bx bx-cog'></i>
+                    <a href="#">Setting</a>
+                </div>
+            </div>
 
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="#">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-files-landscapes"></i>
-                    <span class="link-name">Content</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Analytics</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-thumbs-up"></i>
-                    <span class="link-name">Like</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-comments"></i>
-                    <span class="link-name">Comment</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-share"></i>
-                    <span class="link-name">Share</span>
-                </a></li>
-            </ul>
+            <div class="pic">
+                <img src="assets/pro.png">
+            </div>
+
+           
+
+        </aside>
+
+        <main id="Dashbord">
+            <header>
+                <button class="menu-btn" id="menu-open">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <h5>Hello <b>REZA</b>, welcome back!</h5>
+            </header>
+
+           
+
+            <div class="analytics">
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Locations</h5>
+                            <p>35 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bx-map-pin'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>People</h5>
+                            <p>30 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Airport</h5>
+                            <p>45 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bxs-plane-land'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Places</h5>
+                            <p>20 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bxs-castle'></i>
+                </div>
+            </div>
+
+            <div class="separator">
+                <div class="info">
+                    <h3>Planning</h3>
+                    <a href="#">View All</a>
+                </div>
+                <input type="date" value="2023-10-15">
+            </div>
+
+            <div class="planning">
+                <div class="item">
+                    <div class="left">
+                        <div class="icon">
+                            <i class='bx bx-book-alt'></i>
+                        </div>
+                        <div class="details">
+                            <h5>Reading - Topic 1</h5>
+                            <p>8:00 - 10:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <div class="icon">
+                            <i class='bx bx-edit-alt'></i>
+                        </div>
+                        <div class="details">
+                            <h5>Writing - Topic 2</h5>
+                            <p>13:00 - 14:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <div class="icon">
+                            <i class='bx bx-headphone'></i>
+                        </div>
+                        <div class="details">
+                            <h5>Listening - Topic 1</h5>
+                            <p>15:00 - 16:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <div class="icon">
+                            <i class='bx bx-volume-low'></i>
+                        </div>
+                        <div class="details">
+                            <h5>Listening - Topic 2</h5>
+                            <p>19:00 - 20:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-vertical-rounded'></i>
+                </div>
+            </div>
+        </main>
+
+        <main id="users">
+            <header>
+                <button class="menu-btn" id="menu-open">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <h5>Hello <b>REZA</b>, welcome back!</h5>
+            </header>
+
+           
+
+            <div class="analytics">
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Locations</h5>
+                            <p>35 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bx-map-pin'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>People</h5>
+                            <p>30 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Airport</h5>
+                            <p>45 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bxs-plane-land'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Places</h5>
+                            <p>20 Lessons</p>
+                        </div>
+                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100"></div>
+                    </div>
+                    <i class='bx bxs-castle'></i>
+                </div>
+            </div>
+
+            <div class="separator">
+                <div class="info">
+                    <h3>Planning</h3>
+                    <a href="#">View All</a>
+                </div>
+            </div>
+
             
-            <ul class="logout-mode">
-                <li><a href="#">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Logout</span>
-                </a></li>
+        </main>
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
+       
 
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
-            </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            
-            <img src="images/profile.jpg" alt="">
-        </div>
-
-        <div class="dash-content">
-            <div class="overview">
-                <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
-                </div>
-
-                <div class="boxes">
-                    <div class="box box1">
-                        <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Total Likes</span>
-                        <span class="number">50,120</span>
-                    </div>
-                    <div class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Comments</span>
-                        <span class="number">20,120</span>
-                    </div>
-                    <div class="box box3">
-                        <i class="uil uil-share"></i>
-                        <span class="text">Total Share</span>
-                        <span class="number">10,120</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="activity">
-                <div class="title">
-                    <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent Activity</span>
-                </div>
-
-                <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Name</span>
-                        <span class="data-list">Prem Shahi</span>
-                        <span class="data-list">Deepa Chand</span>
-                        <span class="data-list">Manisha Chand</span>
-                        <span class="data-list">Pratima Shahi</span>
-                        <span class="data-list">Man Shahi</span>
-                        <span class="data-list">Ganesh Chand</span>
-                        <span class="data-list">Bikash Chand</span>
-                    </div>
-                    <div class="data email">
-                        <span class="data-title">Email</span>
-                        <span class="data-list">premshahi@gmail.com</span>
-                        <span class="data-list">deepachand@gmail.com</span>
-                        <span class="data-list">prakashhai@gmail.com</span>
-                        <span class="data-list">manishachand@gmail.com</span>
-                        <span class="data-list">pratimashhai@gmail.com</span>
-                        <span class="data-list">manshahi@gmail.com</span>
-                        <span class="data-list">ganeshchand@gmail.com</span>
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Joined</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-15</span>
-                    </div>
-                    <div class="data type">
-                        <span class="data-title">Type</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <script src="script.js"></script>
+    <script>
+        function displyUsers(){
+            document.getElementById('users').style.display='block';
+            document.getElementById('Dashbord').style.display='none';
+        }
+
+        function displyDash(){
+            document.getElementById('users').style.display='none';
+            document.getElementById('Dashbord').style.display='block';
+        }
+    </script>
 </body>
+
 </html>

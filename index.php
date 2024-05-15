@@ -35,21 +35,21 @@ session_start();
 
                     <div class="signin-form">
                         <h2 class="form-title" style="text-align: center;">East-<span style="color: rgb(253, 42, 42);">Link</span> Sign In</h2>
-                        <form method="POST" class="register-form" id="login-form">
+                        <form method="POST" class="register-form" id="login-form" action="./BackEnd/Login.php">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Email"/>
+                                <input type="text" name="email" id="your_name" placeholder="Your Email"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                <input type="password" name="password" id="your_pass" placeholder="Password"/>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="login" id="signin" class="form-submit" value="Log in"/>
                             </div>
                         </form>
                        
@@ -67,5 +67,51 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+
+    <?php
+    
+    if($_SESSION['wrong_email'] == 1){
+        echo '
+                <script>
+                Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Wrong Email !",
+				  });
+                  </script>
+                '
+                ;
+	    $_SESSION['wrong_email'] = null;
+    }else if($_SESSION['wrong_pass'] == 1){
+        echo '
+                <script>
+                Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Wrong Password !",
+				  });
+                  </script>
+                '
+                ;
+	    $_SESSION['wrong_pass'] = null;
+    }else if($_SESSION['API_NOT_WORKING'] == 1){
+      echo '
+              <script>
+              Swal.fire({
+        icon: "error",
+        title: "Api Is Not Working...",
+        text: "Api Is Not Working. Please Contact Your System Administrator !",
+        });
+                </script>
+              '
+              ;
+    $_SESSION['API_NOT_WORKING'] = null;
+  }
+    
+    ?>
+
+
+
+
 </body>
 </html>
