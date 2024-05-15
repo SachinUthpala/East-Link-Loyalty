@@ -1,5 +1,6 @@
 <?php
-require_once './BackEnd/DB.Conn.Php'
+require_once './BackEnd/DB.Conn.Php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -62,5 +63,9 @@ require_once './BackEnd/DB.Conn.Php'
     <!-- JS -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="js/main.js"></script>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    <!-- sweet alert json -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+</body>
 </html>
