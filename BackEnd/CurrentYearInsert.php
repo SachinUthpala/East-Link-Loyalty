@@ -105,6 +105,6 @@ foreach ($totals as $name => $info) {
 }
 
 
-header("Location: ../UserPages/UserPage.html");
+header("Location: ../UserPages/UserPage.php");
 
 ?>

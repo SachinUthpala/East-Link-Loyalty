@@ -251,7 +251,7 @@ main .analytics .item .progress .progress-bar{
 main .analytics .item:nth-child(1) .progress .progress-bar{
     background: radial-gradient(closest-side, #006ED3 79%, transparent 80% 100%),
     conic-gradient(#208BEE 25%, #fff 0%);
-}
+}   
 
 main .analytics .item:nth-child(2) .progress .progress-bar{
     background: radial-gradient(closest-side, #FF993A 79%, transparent 80% 100%),

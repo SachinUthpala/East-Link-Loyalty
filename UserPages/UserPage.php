@@ -1,3 +1,63 @@
+<?php
+
+session_start();
+require_once '../BackEnd/DB.Conn.php';
+
+$customerCount = "SELECT COUNT(*) AS row_count FROM CurrentYearDelivery";
+$customerCount_smtp = $conn->prepare($customerCount);
+$customerCount_smtp->execute();
+$customerCountValue_row = $customerCount_smtp->fetch(PDO::FETCH_ASSOC);
+
+
+$UserCount = "SELECT COUNT(*) AS row_count FROM Users";
+$UserCount_smtp = $conn->prepare($UserCount);
+$UserCount_smtp->execute();
+$UserCount_row = $UserCount_smtp->fetch(PDO::FETCH_ASSOC);
+
+$UserCount_ADMIN = "SELECT COUNT(*) AS row_count FROM Users WHERE userAccess = 1";
+$UserCount_smtp_ADMIN = $conn->prepare($UserCount);
+$UserCount_smtp_ADMIN->execute();
+$UserCount_row_ADMIN = $UserCount_smtp_ADMIN->fetch(PDO::FETCH_ASSOC);
+
+$UserCount_NonAdmin = "SELECT COUNT(*) AS row_count FROM Users WHERE userAccess = 0";
+$UserCount_smtp_NonAdmin = $conn->prepare($UserCount);
+$UserCount_smtp_NonAdmin->execute();
+$UserCount_row_NonAdmin = $UserCount_smtp_NonAdmin->fetch(PDO::FETCH_ASSOC);
+?>
+
+
+<!-- cheacking if api is working -->
+<?php
+
+
+// API URL
+$url = "http://10.0.0.237:3000/api/inv";
+
+// Get the current month (numeric representation)
+$currentMonth = date('m');
+$currentYear = date('y');
+// Get the current date (day of the month)
+$currentDate = date('d');
+
+// Initialize cURL session
+$ch = curl_init();
+
+// Set cURL options
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+// Execute cURL request
+$response = curl_exec($ch);
+// Check for errors
+if (curl_error($ch)) {
+    echo 'Error: '. curl_error($ch);
+    header("Location: ../index.php");
+    $_SESSION['API_NOT_WORKING'] = 1;
+    exit;
+}
+
+?>
+<!-- end of api checking -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +66,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-    <title>Responsive Dashboard Design #01 | AsmrProg</title>
+    <title>East Link | Navala</title>
 </head>
 
 <body>
@@ -57,7 +117,7 @@
                 <button class="menu-btn" id="menu-open">
                     <i class='bx bx-menu'></i>
                 </button>
-                <h5>Hello <b>REZA</b>, welcome back!</h5>
+                <h5>Hello <b><?php echo $_SESSION['logedInUser']; ?></b>, welcome back!</h5>
             </header>
 
            
@@ -69,8 +129,7 @@
                             <h5>Locations</h5>
                             <p>35 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        
                     </div>
                     <i class='bx bx-map-pin'></i>
                 </div>
@@ -80,8 +139,7 @@
                             <h5>People</h5>
                             <p>30 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        
                     </div>
                     <i class='bx bx-user-voice'></i>
                 </div>
@@ -91,8 +149,7 @@
                             <h5>Airport</h5>
                             <p>45 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                       
                     </div>
                     <i class='bx bxs-plane-land'></i>
                 </div>
@@ -102,8 +159,7 @@
                             <h5>Places</h5>
                             <p>20 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        
                     </div>
                     <i class='bx bxs-castle'></i>
                 </div>
@@ -168,62 +224,53 @@
                 </div>
             </div>
         </main>
-
+        <!-- end of dashbord -->
         <main id="users">
             <header>
                 <button class="menu-btn" id="menu-open">
                     <i class='bx bx-menu'></i>
                 </button>
-                <h5>Hello <b>REZA</b>, welcome back!</h5>
+                <h5>Hello <b><?php echo $_SESSION['logedInUser']; ?></b>, welcome back!</h5>
             </header>
 
            
 
             <div class="analytics">
+                
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Locations</h5>
-                            <p>35 Lessons</p>
-                        </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
-                    </div>
-                    <i class='bx bx-map-pin'></i>
-                </div>
-                <div class="item">
-                    <div class="progress">
-                        <div class="info">
-                            <h5>People</h5>
+                            <h5>Admin Users</h5>
                             <p>30 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                    
                     </div>
                     <i class='bx bx-user-voice'></i>
                 </div>
+
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Airport</h5>
-                            <p>45 Lessons</p>
+                            <h5>System Users</h5>
+                            <p>30 Lessons</p>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        
                     </div>
-                    <i class='bx bxs-plane-land'></i>
+                    <i class='bx bx-user-voice'></i>
                 </div>
+
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Places</h5>
-                            <p>20 Lessons</p>
+                            <h5>All Our Customers</h5>
+                            <h2 style="color: #fff;"><?php echo $customerCountValue_row['row_count'] ; ?></h2>
                         </div>
-                        <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        
                     </div>
-                    <i class='bx bxs-castle'></i>
+                    <i class='bx bx-user-voice'></i>
                 </div>
+                
+                
             </div>
 
             <div class="separator">
