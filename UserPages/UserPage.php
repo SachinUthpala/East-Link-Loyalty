@@ -113,7 +113,7 @@ if (curl_error($ch)) {
                     <i class='bx bx-grid-alt'></i>
                     <a href="#">Users</a>
                 </div>
-                <div class="item" id="active">
+                <div class="item" id="active" onclick="logoutfunction()">
                     <i class='bx bx-power-off'></i>
                     <a href="#">SignOut</a>
                 </div>
@@ -126,6 +126,25 @@ if (curl_error($ch)) {
            
 
         </aside>
+
+        <script>
+            function logoutfunction(){
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to LogOut ??!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Logout Now!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href="../BackEnd/logOut.php"; 
+                }
+                });
+
+        }
+        </script>
 
         <main id="Dashbord"
         <?php
