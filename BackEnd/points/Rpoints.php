@@ -33,6 +33,9 @@ try {
     $sql_SMTP->execute();
 
     echo "Update successful!";
+    $_SESSION['RedineSuccess'] =1;
+    $_SESSION['ShowInquires'] = 1;
+    header("Location: ../../UserPages/UserPage.php");
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }

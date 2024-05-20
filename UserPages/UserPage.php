@@ -124,6 +124,10 @@ if (curl_error($ch)) {
                     <i class='bx bxs-add-to-queue'></i>
                     <a href="#">Add User</a>
                 </div>
+                <div class="item" id="active" onclick="clearTable()">
+                    <i class='bx bx-power-off'></i>
+                    <a href="#">Clear <?php echo $year;?></a>
+                </div>
                 <div class="item" id="active" onclick="logoutfunction()">
                     <i class='bx bx-power-off'></i>
                     <a href="#">SignOut</a>
@@ -159,7 +163,7 @@ if (curl_error($ch)) {
 
         <main id="Dashbord"
         <?php
-    if($_SESSION['ShowUsers'] == 1){
+    if($_SESSION['ShowUsers'] == 1 || $_SESSION['ShowInquires'] == 1){
         echo "style='display : none;'";
     }
 
@@ -425,6 +429,18 @@ if (curl_error($ch)) {
                 '
                 ;
                 $_SESSION['AddUserSucessFUll'] = null;
+        }else if($_SESSION['RedineSuccess'] == 1){
+            echo '
+                <script>
+                Swal.fire({
+                    title: "Updated!",
+                    text: "User Point Updatd!",
+                    icon: "success"
+                  });
+                  </script>
+                '
+                ;
+                $_SESSION['RedineSuccess'] = null;
         }
 
     ?>     
@@ -526,7 +542,16 @@ if (curl_error($ch)) {
 
 
 
-<main id="currentYearDeliveries">
+<main id="currentYearDeliveries"
+<?php
+    if($_SESSION['ShowInquires'] == 1){
+        echo "style='display : block;'";
+        $_SESSION['ShowInquires'] = null;
+    }
+
+?>
+
+>
         <header>
             <button class="menu-btn" id="menu-open">
                 <i class='bx bx-menu'></i>
