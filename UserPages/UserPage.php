@@ -115,7 +115,7 @@ if (curl_error($ch)) {
                 </div>
                 <div class="item" onclick="displyUsers_Add()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
                 else {echo 'display:none;';} ?>">
-                    <i class='bx bx-grid-alt'></i>
+                    <i class='bx bxs-add-to-queue'></i>
                     <a href="#">Add User</a>
                 </div>
                 <div class="item" id="active" onclick="logoutfunction()">
@@ -407,6 +407,18 @@ if (curl_error($ch)) {
                 '
                 ;
                 $_SESSION['DeleteSucessFUll'] = null;
+        }else if($_SESSION['AddUserSucessFUll'] == 1){
+            echo '
+                <script>
+                Swal.fire({
+                    title: "User Added!",
+                    text: "New User Already Added!",
+                    icon: "success"
+                  });
+                  </script>
+                '
+                ;
+                $_SESSION['AddUserSucessFUll'] = null;
         }
 
     ?>     
@@ -469,7 +481,7 @@ if (curl_error($ch)) {
             </div>
             <br>
             <div class="container_addUser">
-        <form class="user-form_addUser" method="post" action="">
+        <form class="user-form_addUser" method="post" action="../BackEnd/UserFunctions/AddUser.php">
             <h2 class="form-title_addUser">User Details</h2>
             <div class="input-group_addUser">
                 <input type="text" id="name" name="name" required>
