@@ -247,6 +247,17 @@ if (curl_error($ch)) {
             </div>
         </main>
         <!-- end of dashbord -->
+
+
+
+        <!-- use data -->
+        <?php
+        $allSystemUsrsTable = "SELECT * FROM Users";
+        $allSystemUsrsTable_smtp = $conn->prepare($allSystemUsrsTable);
+        $allSystemUsrsTable_smtp->execute();
+        ?>
+
+
         <main id="users">
             <header>
                 <button class="menu-btn" id="menu-open">
@@ -257,7 +268,7 @@ if (curl_error($ch)) {
 
            
 
-            <div class="analytics">
+            <div class="analytics" style="display: flex;gap: 10px;">
                 
                 <div class="item">
                     <div class="progress">
@@ -291,19 +302,6 @@ if (curl_error($ch)) {
                     </div>
                     <i class='bx bx-user-voice'></i>
                 </div>
-
-                <div class="item">
-                    <div class="progress">
-                        <div class="info">
-                            <h5>All Our Customers</h5>
-                            <h2 style="color: #fff;"><?php echo $customerCountValue_row['row_count'] ; ?></h2>
-                        </div>
-                        
-                    </div>
-                    <i class='bx bx-user-voice'></i>
-                </div>
-                
-                
             </div>
 
             <div class="separator">
@@ -322,35 +320,34 @@ if (curl_error($ch)) {
         <table id="myTable">
             <thead>
                 <tr class="header">
-                    <th>Category 1</th>
-                    <th>Category 2</th>
-                    <th>Category 3</th>
-                    <th>Category 4</th>
-                    <th>Action</th>
+                    <th>UserName</th>
+                    <th>User Email</th>
+                    <th>User Password</th>
+                    <th>Admin Access</th>
+                    <th>Actions</th>
+                    <th>Admin Access</th>
                 </tr>
             </thead>
             <tbody>
+                </tbody>
+                <?php while($allSystemUsrsTable_smtp_row = $allSystemUsrsTable_smtp->fetch(PDO::FETCH_ASSOC)) { ?>
                 <tr>
-                    <td>Item 1</td>
-                    <td>Item 2</td>
-                    <td>Item 3</td>
-                    <td>Item 4</td>
+                    <td><?php echo $allSystemUsrsTable_smtp_row['userName']; ?></td>
+                    <td><?php echo $allSystemUsrsTable_smtp_row['userEmail']; ?></td>
+                    <td><?php echo $allSystemUsrsTable_smtp_row['userPassword']; ?></td>
+                    <td><?php 
+                    
+                    if( $allSystemUsrsTable_smtp_row['userAccess']==1){
+                        echo "<p style='Padding: 10px;background-color:green;border-radius :5px;color:#fff'>Have</p>";
+                    }else{
+                        echo "<p style='Padding: 10px;background-color:red;border-radius: 5px;color:#fff'>Dont Have</p>";
+                    }
+                    
+                    ?></td>
                     <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
+                    <td><i class='bx bx-universal-access'></i></td>
                 </tr>
-                <tr>
-                    <td>Item 5</td>
-                    <td>Item 6</td>
-                    <td>Item 7</td>
-                    <td>Item 8</td>
-                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
-                </tr>
-                <tr>
-                    <td>Item 9</td>
-                    <td>Item 10</td>
-                    <td>Item 11</td>
-                    <td>Item 12</td>
-                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
-                </tr>
+                <?php } ?>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>

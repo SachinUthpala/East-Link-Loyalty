@@ -1,0 +1,8 @@
+user table rows❌
+
+
+userId Primary	int(11)			No	None		AUTO_INCREMENT	Change Change	Drop Drop	
+	2	userName	varchar(200)	latin1_swedish_ci		No	None			Change Change	Drop Drop	
+	3	userEmail	varchar(200)	latin1_swedish_ci		No	None			Change Change	Drop Drop	
+	4	userPassword	varchar(200)	latin1_swedish_ci		No	None			Change Change	Drop Drop	
+	5	userAccess

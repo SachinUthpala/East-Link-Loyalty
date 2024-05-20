@@ -685,11 +685,12 @@ main .planning .item > i{
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
     overflow-x: auto;
+    border: 1px solid #006dd349;
 }
 
 .search-bar {
@@ -700,7 +701,7 @@ main .planning .item > i{
 .search-bar input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc41;
     border-radius: 4px;
     margin-bottom: 20px;
     font-size: 16px;
