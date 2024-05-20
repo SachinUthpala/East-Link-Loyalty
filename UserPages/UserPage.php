@@ -567,10 +567,11 @@ if (curl_error($ch)) {
                         <td><?php echo $currentYearInquires_smtp_row['UsedPoints']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['RemainingPoints']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['RemainingPoints'] + $currentYearInquires_smtp_row['UsedPoints']; ?></td>
-                        <td <?php if($currentYearInquires_smtp_row['RemainingPoints'] >= 50){echo "style='display:block'";}else{echo "style='display:none'";} ?>>
-                            <form action="#">
-                                <input type="hidden" name="id">
-                                <input type="number" name="points" min="50" max="<?php echo $currentYearInquires_smtp_row['RemainingPoints'] ?>" id="">
+                        <td>
+                            <form action="../BackEnd/points/Rpoints.php" method="post" <?php if($currentYearInquires_smtp_row['RemainingPoints'] >= 50){echo "style='display:block'";}else{echo "style='display:none'";} ?>>
+                                <input type="hidden" name="id" value="<?php echo $currentYearInquires_smtp_row['Name'] ?>">
+                                <input type="hidden" name="remaing" value="<?php echo $currentYearInquires_smtp_row['RemainingPoints'] ?>">
+                                <input type="hidden" name="used" value="<?php echo $currentYearInquires_smtp_row['UsedPoints'] ?>">
                                 <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bxs-rename'></i></button>
                             </form>
                         </td>
