@@ -9,18 +9,18 @@ $customerCount_smtp->execute();
 $customerCountValue_row = $customerCount_smtp->fetch(PDO::FETCH_ASSOC);
 
 
-$UserCount = "SELECT COUNT(*) AS row_count FROM Users";
+$UserCount = "SELECT COUNT(*) AS row_count_AL FROM Users";
 $UserCount_smtp = $conn->prepare($UserCount);
 $UserCount_smtp->execute();
 $UserCount_row = $UserCount_smtp->fetch(PDO::FETCH_ASSOC);
 
-$UserCount_ADMIN = "SELECT COUNT(*) AS row_count FROM Users WHERE userAccess = 1";
-$UserCount_smtp_ADMIN = $conn->prepare($UserCount);
+$UserCount_ADMIN = "SELECT COUNT(*) AS row_count_A FROM Users WHERE userAccess = 1";
+$UserCount_smtp_ADMIN = $conn->prepare($UserCount_ADMIN );
 $UserCount_smtp_ADMIN->execute();
 $UserCount_row_ADMIN = $UserCount_smtp_ADMIN->fetch(PDO::FETCH_ASSOC);
 
-$UserCount_NonAdmin = "SELECT COUNT(*) AS row_count FROM Users WHERE userAccess = 0";
-$UserCount_smtp_NonAdmin = $conn->prepare($UserCount);
+$UserCount_NonAdmin = "SELECT COUNT(*) AS row_count_N FROM Users WHERE userAccess = 0";
+$UserCount_smtp_NonAdmin = $conn->prepare($UserCount_NonAdmin);
 $UserCount_smtp_NonAdmin->execute();
 $UserCount_row_NonAdmin = $UserCount_smtp_NonAdmin->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -241,7 +241,7 @@ if (curl_error($ch)) {
                     <div class="progress">
                         <div class="info">
                             <h5>Admin Users</h5>
-                            <p>30 Lessons</p>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row_ADMIN['row_count_A'] ; ?></h2>
                         </div>
                     
                     </div>
@@ -252,7 +252,18 @@ if (curl_error($ch)) {
                     <div class="progress">
                         <div class="info">
                             <h5>System Users</h5>
-                            <p>30 Lessons</p>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row_NonAdmin['row_count_N'] ; ?></h2>
+                        </div>
+                        
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>All System Users</h5>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row['row_count_AL'] ; ?></h2>
                         </div>
                         
                     </div>
