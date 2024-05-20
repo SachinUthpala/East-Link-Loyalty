@@ -107,8 +107,8 @@ if (curl_error($ch)) {
                     <i class='bx bx-home-alt-2'></i>
                     <a href="#">Overview</a>
                 </div>
-                <div class="item" onclick="displyUsers()" style="<?php if($_SESSIONp['AdminAccess'] == 1){echo 'display:block;';} 
-                else {echo 'display:none;';} ?></div>">
+                <div class="item" onclick="displyUsers()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
+                else {echo 'display:none;';} ?>">
                     <i class='bx bx-grid-alt'></i>
                     <a href="#">Users</a>
                 </div>
