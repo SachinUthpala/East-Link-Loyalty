@@ -52,6 +52,7 @@ if(isset($_POST['login'])){
             if($password == $userPass){
                 $_SESSION['login_sucessfull'] = 1;
                 $_SESSION['logedInUser'] = $row['userName'];
+                $_SESSION['AdminAccess'] = $row['userAccess'];
                 header("Location: ./InsetData.php");
                 //F:\East Link Loyalty\UserPages\UserPage.html
             }else{

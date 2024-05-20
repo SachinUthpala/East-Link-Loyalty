@@ -107,22 +107,12 @@ if (curl_error($ch)) {
                     <i class='bx bx-home-alt-2'></i>
                     <a href="#">Overview</a>
                 </div>
-                <div class="item" onclick="displyUsers()">
+                <div class="item" onclick="displyUsers()" style="<?php if($_SESSIONp['AdminAccess'] == 1){echo 'display:block;';} 
+                else {echo 'display:none;';} ?></div>">
                     <i class='bx bx-grid-alt'></i>
                     <a href="#">Users</a>
                 </div>
-                <div class="item">
-                    <i class='bx bx-folder'></i>
-                    <a href="#">Resources</a>
-                </div>
-                <div class="item">
-                    <i class='bx bx-message-square-dots'></i>
-                    <a href="#">Message</a>
-                </div>
-                <div class="item">
-                    <i class='bx bx-cog'></i>
-                    <a href="#">Setting</a>
-                </div>
+                
             </div>
 
             <div class="pic">
@@ -344,8 +334,18 @@ if (curl_error($ch)) {
                     }
                     
                     ?></td>
-                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
-                    <td><i class='bx bx-universal-access'></i></td>
+                    <td style="text-align: center;">
+                        <form action="#" method="post">
+                            <input type="hidden" name="id" value="<?php echo $allSystemUsrsTable_smtp_row['userId'] ; ?>">
+                            <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bx-trash' ></i></button>
+                        </form>
+                    </td>
+                    <td style="text-align: center;">
+                        <form action="#" method="post">
+                            <input type="hidden" name="id" value="<?php echo $allSystemUsrsTable_smtp_row['userId'] ; ?>">
+                            <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bx-universal-access' style="color: green;"></i></button>
+                        </form>
+                    </td>
                 </tr>
                 <?php } ?>
                 <!-- Add more rows as needed -->
