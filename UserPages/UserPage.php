@@ -559,7 +559,7 @@ if (curl_error($ch)) {
                 </thead>
                 <tbody>
                     <?php while($currentYearInquires_smtp_row = $currentYearInquires_smtp->fetch(PDO::FETCH_ASSOC)) { ?>
-                    <tr>
+                    <tr <?php if($currentYearInquires_smtp_row['RemainingPoints'] >= 50){echo "style='background-color: rgba(172, 255, 47, 0.308);'";}else{echo "style='background-color: rgba(248, 0, 0, 0.308);'";} ?>>
                         <td><?php echo $currentYearInquires_smtp_row['Name']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['CntctCode']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['CardName']; ?></td>
@@ -567,6 +567,13 @@ if (curl_error($ch)) {
                         <td><?php echo $currentYearInquires_smtp_row['UsedPoints']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['RemainingPoints']; ?></td>
                         <td><?php echo $currentYearInquires_smtp_row['RemainingPoints'] + $currentYearInquires_smtp_row['UsedPoints']; ?></td>
+                        <td <?php if($currentYearInquires_smtp_row['RemainingPoints'] >= 50){echo "style='display:block'";}else{echo "style='display:none'";} ?>>
+                            <form action="#">
+                                <input type="hidden" name="id">
+                                <input type="number" name="points" min="50" max="<?php echo $currentYearInquires_smtp_row['RemainingPoints'] ?>" id="">
+                                <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bxs-rename'></i></button>
+                            </form>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -580,7 +587,7 @@ if (curl_error($ch)) {
     </main>
     <script>
         let currentPage = 1;
-        const rowsPerPage = 5;
+        const rowsPerPage = 3;
         let rows = Array.from(document.querySelectorAll('#myTable_2 tbody tr'));
 
         function searchTabless() {

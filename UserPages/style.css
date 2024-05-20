@@ -683,7 +683,7 @@ main .planning .item > i{
 /* table */
 .table-container ,  .table-container_2{
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 20px auto;
     background: #ffffff;
     padding: 20px;
@@ -728,6 +728,7 @@ td i {
     cursor: pointer;
     color: red;
     font-size: 20px;
+    
 }
 
 tr:hover {
