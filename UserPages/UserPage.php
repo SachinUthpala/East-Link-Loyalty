@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if($_SESSION['logedInUser'] == null){
+    header("Location: ../index.php");
+}
+
 require_once '../BackEnd/DB.Conn.php';
 
 $customerCount = "SELECT COUNT(*) AS row_count FROM CurrentYearDelivery";
@@ -23,6 +28,17 @@ $UserCount_NonAdmin = "SELECT COUNT(*) AS row_count_N FROM Users WHERE userAcces
 $UserCount_smtp_NonAdmin = $conn->prepare($UserCount_NonAdmin);
 $UserCount_smtp_NonAdmin->execute();
 $UserCount_row_NonAdmin = $UserCount_smtp_NonAdmin->fetch(PDO::FETCH_ASSOC);
+?>
+
+<?php
+// <!-- current year delivery changes -->
+$CurentYearTotalSales_totaol = "SELECT SUM(AllDocTotal) AS total_sum FROM CurrentYearDelivery;";
+$CurentYearTotalSales_smtp_totaol = $conn->prepare($CurentYearTotalSales_totaol);
+$CurentYearTotalSales_smtp_totaol->execute();
+$CurentYearTotalSales_smtp_totaol_row = $CurentYearTotalSales_smtp_totaol->fetch(PDO::FETCH_ASSOC);
+
+
+
 ?>
 
 
@@ -126,18 +142,9 @@ if (curl_error($ch)) {
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Locations</h5>
-                            <p>35 Lessons</p>
-                        </div>
-                        
-                    </div>
-                    <i class='bx bx-map-pin'></i>
-                </div>
-                <div class="item">
-                    <div class="progress">
-                        <div class="info">
-                            <h5>People</h5>
-                            <p>30 Lessons</p>
+                            <h5>All System Users</h5>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row['row_count_AL'] ; ?></h2>
+                            
                         </div>
                         
                     </div>
@@ -146,22 +153,32 @@ if (curl_error($ch)) {
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Airport</h5>
-                            <p>45 Lessons</p>
+                            <h5>All Sales</h5>
+                            <h2 style="color: #fff;"><?php echo $CurentYearTotalSales_smtp_totaol_row['total_sum'] ; ?></h2>
                         </div>
-                       
+                        
                     </div>
-                    <i class='bx bxs-plane-land'></i>
+                    <i class='bx bxs-package'></i>
                 </div>
                 <div class="item">
                     <div class="progress">
                         <div class="info">
-                            <h5>Places</h5>
+                            <h5>Total Customers</h5>
+                            <h2 style="color: #fff;"><?php echo $customerCountValue_row['row_count'] ; ?></h2>
+                        </div>
+                       
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Total Points</h5>
                             <p>20 Lessons</p>
                         </div>
                         
                     </div>
-                    <i class='bx bxs-castle'></i>
+                    <i class='bx bx-star'></i>
                 </div>
             </div>
 
@@ -286,15 +303,57 @@ if (curl_error($ch)) {
 
             <div class="separator">
                 <div class="info">
-                    <h3>Planning</h3>
+                    <h3>System Users</h3>
                     <a href="#">View All</a>
                 </div>
-            </div>
 
+                <!-- table -->
+                <!-- end table -->
+            </div>
+            <div class="table-container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
+        </div>
+        <table id="myTable">
+            <thead>
+                <tr class="header">
+                    <th>Category 1</th>
+                    <th>Category 2</th>
+                    <th>Category 3</th>
+                    <th>Category 4</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Item 1</td>
+                    <td>Item 2</td>
+                    <td>Item 3</td>
+                    <td>Item 4</td>
+                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
+                </tr>
+                <tr>
+                    <td>Item 5</td>
+                    <td>Item 6</td>
+                    <td>Item 7</td>
+                    <td>Item 8</td>
+                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
+                </tr>
+                <tr>
+                    <td>Item 9</td>
+                    <td>Item 10</td>
+                    <td>Item 11</td>
+                    <td>Item 12</td>
+                    <td><i class='bx bx-trash' onclick="deleteRow(this)"></i></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
             
         </main>
-
-       
+    <!-- script for search -->
+    <script src="./tableSeach1.js"></script>       
 
     </div>
 
