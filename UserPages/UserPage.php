@@ -2,6 +2,8 @@
 
 session_start();
 
+$year = date("Y");
+
 if($_SESSION['logedInUser'] == null){
     header("Location: ../index.php");
 }
@@ -107,6 +109,10 @@ if (curl_error($ch)) {
                 <div class="item" id="active" onclick="displyDash()">
                     <i class='bx bx-home-alt-2'></i>
                     <a href="#">Overview</a>
+                </div>
+                <div class="item" onclick="displyInquires_c()">
+                    <i class='bx bx-home-alt-2'></i>
+                    <a href="#"><?php echo $year.' ';  ?> Inquires</a>
                 </div>
                 <div class="item" onclick="displyUsers()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
                 else {echo 'display:none;';} ?>">
@@ -510,6 +516,116 @@ if (curl_error($ch)) {
         </main>
 
 
+        <?php
+
+        $currentYearInquires = "SELECT * FROM `CurrentYearDelivery` ORDER BY RemainingPoints DESC";
+        $currentYearInquires_smtp = $conn->prepare($currentYearInquires);
+        $currentYearInquires_smtp->execute();
+
+        ?>
+
+
+
+<main id="currentYearDeliveries">
+        <header>
+            <button class="menu-btn" id="menu-open">
+                <i class='bx bx-menu'></i>
+            </button>
+            <h5>Hello <b><?php echo $_SESSION['logedInUser']; ?></b>, welcome back!</h5>
+        </header>
+        <br>
+        <div class="separator">
+            <div class="info">
+                <h3><?php echo $year . ' - Deliveries'; ?></h3>
+            </div>
+        </div>
+        <br>
+        <div class="table-container_2">
+            <div class="search-bar">
+                <input type="text" id="searchInputss" onkeyup="searchTabless()" placeholder="Search for names..">
+            </div>
+            <table id="myTable_2">
+                <thead>
+                    <tr class="header_2">
+                        <th>Name</th>
+                        <th>Contact Code</th>
+                        <th>Card Name</th>
+                        <th>Total Inquiries</th>
+                        <th>Used Points</th>
+                        <th>Remaining Points</th>
+                        <th>Total Points</th>
+                        <th>Redine</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($currentYearInquires_smtp_row = $currentYearInquires_smtp->fetch(PDO::FETCH_ASSOC)) { ?>
+                    <tr>
+                        <td><?php echo $currentYearInquires_smtp_row['Name']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['CntctCode']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['CardName']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['AllDocTotal']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['UsedPoints']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['RemainingPoints']; ?></td>
+                        <td><?php echo $currentYearInquires_smtp_row['RemainingPoints'] + $currentYearInquires_smtp_row['UsedPoints']; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button onclick="prevPage()" id="btn_prev">Prev</button>
+                <span id="page"></span>
+                <button onclick="nextPage()" id="btn_next">Next</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 5;
+        let rows = Array.from(document.querySelectorAll('#myTable_2 tbody tr'));
+
+        function searchTabless() {
+            const input = document.getElementById('searchInputss').value.toLowerCase();
+            rows = Array.from(document.querySelectorAll('#myTable_2 tbody tr')).filter(row => {
+                const cells = row.getElementsByTagName('td');
+                return Array.from(cells).some(cell => cell.innerText.toLowerCase().includes(input));
+            });
+            currentPage = 1;
+            displayRows();
+        }
+
+        function displayRows() {
+            const tbody = document.querySelector('#myTable_2 tbody');
+            tbody.innerHTML = '';
+
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedRows = rows.slice(start, end);
+
+            paginatedRows.forEach(row => tbody.appendChild(row));
+
+            document.getElementById('page').innerText = `Page ${currentPage}`;
+            document.getElementById('btn_prev').disabled = currentPage === 1;
+            document.getElementById('btn_next').disabled = end >= rows.length;
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayRows();
+            }
+        }
+
+        function nextPage() {
+            if ((currentPage * rowsPerPage) < rows.length) {
+                currentPage++;
+                displayRows();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayRows);
+    </script>
+
+
     
 
 
@@ -531,18 +647,28 @@ if (curl_error($ch)) {
             document.getElementById('users').style.display='block';
             document.getElementById('Dashbord').style.display='none';
             document.getElementById('add_user').style.display='none';
+            document.getElementById('currentYearDeliveries').style.display='none';
         }
 
         function displyDash(){
             document.getElementById('users').style.display='none';
             document.getElementById('Dashbord').style.display='block';
             document.getElementById('add_user').style.display='none';
+            document.getElementById('currentYearDeliveries').style.display='none';
         }
 
         function displyUsers_Add(){
             document.getElementById('users').style.display='none';
             document.getElementById('Dashbord').style.display='none';
             document.getElementById('add_user').style.display='block';
+            document.getElementById('currentYearDeliveries').style.display='none';
+        }
+
+        function displyInquires_c(){
+            document.getElementById('users').style.display='none';
+            document.getElementById('Dashbord').style.display='none';
+            document.getElementById('add_user').style.display='none';
+            document.getElementById('currentYearDeliveries').style.display='block';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

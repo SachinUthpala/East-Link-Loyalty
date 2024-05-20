@@ -681,7 +681,7 @@ main .planning .item > i{
 }
 
 /* table */
-.table-container {
+.table-container ,  .table-container_2{
     width: 90%;
     max-width: 1200px;
     margin: 20px auto;
@@ -860,4 +860,26 @@ tr:hover {
 
 .submit-btn_addUser:hover {
     background-color: #0056b3;
+}
+
+#currentYearDeliveries{
+    display: none;
+}
+
+
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
