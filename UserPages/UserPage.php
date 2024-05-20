@@ -88,6 +88,7 @@ if (curl_error($ch)) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <title>East Link | Navala</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -112,7 +113,10 @@ if (curl_error($ch)) {
                     <i class='bx bx-grid-alt'></i>
                     <a href="#">Users</a>
                 </div>
-                
+                <div class="item" id="active">
+                    <i class='bx bx-home-alt-2'></i>
+                    <a href="#">SignOut</a>
+                </div>
             </div>
 
             <div class="pic">
@@ -335,7 +339,7 @@ if (curl_error($ch)) {
                     
                     ?></td>
                     <td style="text-align: center;">
-                        <form action="#" method="post">
+                        <form action="../BackEnd/UserFunctions/DeleteUser.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $allSystemUsrsTable_smtp_row['userId'] ; ?>">
                             <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bx-trash' ></i></button>
                         </form>
@@ -355,7 +359,24 @@ if (curl_error($ch)) {
             
         </main>
     <!-- script for search -->
-    <script src="./tableSeach1.js"></script>       
+    <script src="./tableSeach1.js"></script>  
+    <?php
+
+        if($_SESSION['DeleteSucessFUll'] == 1){
+            echo '
+                <script>
+                Swal.fire({
+                    title: "User Deleted!",
+                    text: "User Already Deleted!",
+                    icon: "success"
+                  });
+                  </script>
+                '
+                ;
+                $_SESSION['DeleteSucessFUll'] = null;
+        }
+
+    ?>     
 
     </div>
 
@@ -371,6 +392,8 @@ if (curl_error($ch)) {
             document.getElementById('Dashbord').style.display='block';
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </body>
 
 </html>
