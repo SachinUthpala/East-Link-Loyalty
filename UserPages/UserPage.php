@@ -114,7 +114,7 @@ if (curl_error($ch)) {
                     <a href="#">Users</a>
                 </div>
                 <div class="item" id="active">
-                    <i class='bx bx-home-alt-2'></i>
+                    <i class='bx bx-power-off'></i>
                     <a href="#">SignOut</a>
                 </div>
             </div>
@@ -127,7 +127,15 @@ if (curl_error($ch)) {
 
         </aside>
 
-        <main id="Dashbord">
+        <main id="Dashbord"
+        <?php
+    if($_SESSION['ShowUsers'] == 1){
+        echo "style='display : none;'";
+    }
+
+?>
+        
+        >
             <header>
                 <button class="menu-btn" id="menu-open">
                     <i class='bx bx-menu'></i>
@@ -252,7 +260,15 @@ if (curl_error($ch)) {
         ?>
 
 
-        <main id="users">
+        <main id="users" #
+        <?php
+    if($_SESSION['ShowUsers'] == 1){
+        echo "style='display : block;'";
+        $_SESSION['ShowUsers'] = null;
+    }
+
+?>
+        >
             <header>
                 <button class="menu-btn" id="menu-open">
                     <i class='bx bx-menu'></i>
@@ -319,7 +335,6 @@ if (curl_error($ch)) {
                     <th>User Password</th>
                     <th>Admin Access</th>
                     <th>Actions</th>
-                    <th>Admin Access</th>
                 </tr>
             </thead>
             <tbody>
@@ -342,12 +357,6 @@ if (curl_error($ch)) {
                         <form action="../BackEnd/UserFunctions/DeleteUser.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $allSystemUsrsTable_smtp_row['userId'] ; ?>">
                             <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bx-trash' ></i></button>
-                        </form>
-                    </td>
-                    <td style="text-align: center;">
-                        <form action="#" method="post">
-                            <input type="hidden" name="id" value="<?php echo $allSystemUsrsTable_smtp_row['userId'] ; ?>">
-                            <button type="submit" style="border: none;background-color: #ffffff00;"><i class='bx bx-universal-access' style="color: green;"></i></button>
                         </form>
                     </td>
                 </tr>

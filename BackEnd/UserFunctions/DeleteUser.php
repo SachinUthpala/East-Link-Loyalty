@@ -16,6 +16,7 @@ $sql_smtp->execute();
 
 if ($sql_smtp->rowCount() > 0) {
     $_SESSION['DeleteSucessFUll'] =1;
+    $_SESSION['ShowUsers'] = 1;
     header("Location: ../../UserPages/UserPage.php");
 }
 
