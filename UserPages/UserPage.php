@@ -32,12 +32,17 @@ $UserCount_row_NonAdmin = $UserCount_smtp_NonAdmin->fetch(PDO::FETCH_ASSOC);
 
 <?php
 // <!-- current year delivery changes -->
-$CurentYearTotalSales_totaol = "SELECT SUM(AllDocTotal) AS total_sum FROM CurrentYearDelivery;";
+$CurentYearTotalSales_totaol = "SELECT SUM(AllDocTotal) AS total_sum FROM CurrentYearDelivery";
 $CurentYearTotalSales_smtp_totaol = $conn->prepare($CurentYearTotalSales_totaol);
 $CurentYearTotalSales_smtp_totaol->execute();
 $CurentYearTotalSales_smtp_totaol_row = $CurentYearTotalSales_smtp_totaol->fetch(PDO::FETCH_ASSOC);
 
 
+//SELECT SUM(RemainingPoints) AS total_points_sum FROM CurrentYearDelivery;
+$CurentYearTotalSales_totaol_points = "SELECT SUM(RemainingPoints) AS total_points_sum FROM CurrentYearDelivery";
+$CurentYearTotalSales_smtp_totaol_points = $conn->prepare($CurentYearTotalSales_totaol_points);
+$CurentYearTotalSales_smtp_totaol_points->execute();
+$CurentYearTotalSales_smtp_totaol_row_points = $CurentYearTotalSales_smtp_totaol_points->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -154,7 +159,7 @@ if (curl_error($ch)) {
                     <div class="progress">
                         <div class="info">
                             <h5>All Sales</h5>
-                            <h2 style="color: #fff;"><?php echo $CurentYearTotalSales_smtp_totaol_row['total_sum'] ; ?></h2>
+                            <h2 style="color: #fff;"><?php echo 'Rs. '.number_format($CurentYearTotalSales_smtp_totaol_row['total_sum']).'.00 /=' ; ?></h2>
                         </div>
                         
                     </div>
@@ -174,7 +179,7 @@ if (curl_error($ch)) {
                     <div class="progress">
                         <div class="info">
                             <h5>Total Points</h5>
-                            <p>20 Lessons</p>
+                            <h2 style="color: #fff;"><?php echo number_format($CurentYearTotalSales_smtp_totaol_row_points['total_points_sum']) ; ?></h2>
                         </div>
                         
                     </div>
