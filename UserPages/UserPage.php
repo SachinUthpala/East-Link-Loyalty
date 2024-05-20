@@ -113,6 +113,11 @@ if (curl_error($ch)) {
                     <i class='bx bx-grid-alt'></i>
                     <a href="#">Users</a>
                 </div>
+                <div class="item" onclick="displyUsers_Add()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
+                else {echo 'display:none;';} ?>">
+                    <i class='bx bx-grid-alt'></i>
+                    <a href="#">Add User</a>
+                </div>
                 <div class="item" id="active" onclick="logoutfunction()">
                     <i class='bx bx-power-off'></i>
                     <a href="#">SignOut</a>
@@ -406,6 +411,98 @@ if (curl_error($ch)) {
 
     ?>     
 
+
+
+<main id="add_user"  >
+            <header>
+                <button class="menu-btn" id="menu-open">
+                    <i class='bx bx-menu'></i>
+                </button>
+                <h5>Hello <b><?php echo $_SESSION['logedInUser']; ?></b>, welcome back!</h5>
+            </header>
+
+           
+
+            <div class="analytics" style="display: flex;gap: 10px;">
+                
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>Admin Users</h5>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row_ADMIN['row_count_A'] ; ?></h2>
+                        </div>
+                    
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>System Users</h5>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row_NonAdmin['row_count_N'] ; ?></h2>
+                        </div>
+                        
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+
+                <div class="item">
+                    <div class="progress">
+                        <div class="info">
+                            <h5>All System Users</h5>
+                            <h2 style="color: #fff;"><?php echo $UserCount_row['row_count_AL'] ; ?></h2>
+                        </div>
+                        
+                    </div>
+                    <i class='bx bx-user-voice'></i>
+                </div>
+            </div>
+
+
+            <div class="container_addUser">
+        <form class="user-form_addUser">
+            <h2 class="form-title_addUser">User Details</h2>
+            <div class="input-group_addUser">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Name</label>
+            </div>
+            <div class="input-group_addUser">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group_addUser">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <div class="input-group_addUser">
+                <select id="admin-access" name="admin_access" required>
+                    <option value="" disabled selected>Select Access</option>
+                    <option value="1">Give Admin Access</option>
+                    <option value="0">Don't Give Admin Access</option>
+                </select>
+                <label for="admin-access">Admin Access</label>
+            </div>
+            <button type="submit" class="submit-btn_addUser">Submit</button>
+        </form>
+    </div>
+         
+        </main>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
 
     <script src="script.js"></script>
@@ -413,11 +510,19 @@ if (curl_error($ch)) {
         function displyUsers(){
             document.getElementById('users').style.display='block';
             document.getElementById('Dashbord').style.display='none';
+            document.getElementById('add_user').style.display='none';
         }
 
         function displyDash(){
             document.getElementById('users').style.display='none';
             document.getElementById('Dashbord').style.display='block';
+            document.getElementById('add_user').style.display='none';
+        }
+
+        function displyUsers_Add(){
+            document.getElementById('users').style.display='none';
+            document.getElementById('Dashbord').style.display='none';
+            document.getElementById('add_user').style.display='block';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

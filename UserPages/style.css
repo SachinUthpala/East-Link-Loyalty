@@ -776,3 +776,87 @@ tr:hover {
         opacity: 1;
     }
 }
+
+#add_user{
+    display: none;
+}
+
+
+
+.container_addUser {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.user-form_addUser {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-title_addUser {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.input-group_addUser {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group_addUser input,
+.input-group_addUser select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group_addUser input:focus,
+.input-group_addUser select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.input-group_addUser label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-group_addUser input:focus + label,
+.input-group_addUser input:not(:placeholder-shown) + label,
+.input-group_addUser select:focus + label,
+.input-group_addUser select:not([value=""]) + label {
+    top: -14px;
+    left: 10px;
+    font-size: 12px;
+    color: #007BFF;
+    background-color: #fff;
+    padding: 0 4px;
+}
+
+.submit-btn_addUser {
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn_addUser:hover {
+    background-color: #0056b3;
+}
