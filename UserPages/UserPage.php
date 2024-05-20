@@ -458,10 +458,18 @@ if (curl_error($ch)) {
                     <i class='bx bx-user-voice'></i>
                 </div>
             </div>
+            <br>
+            <div class="separator">
+                <div class="info">
+                    <h3>Add System Users</h3>
+                </div>
 
-
+                <!-- table -->
+                <!-- end table -->
+            </div>
+            <br>
             <div class="container_addUser">
-        <form class="user-form_addUser">
+        <form class="user-form_addUser" method="post" action="">
             <h2 class="form-title_addUser">User Details</h2>
             <div class="input-group_addUser">
                 <input type="text" id="name" name="name" required>
