@@ -193,7 +193,7 @@ if (curl_error($ch)) {
 
         <main id="Dashbord"
         <?php
-    if($_SESSION['ShowUsers'] == 1 || $_SESSION['ShowInquires'] == 1){
+    if($_SESSION['ShowUsers'] == 1 || $_SESSION['ShowInquires'] == 1 || $_SESSION['SearchClear'] == 1){
         echo "style='display : none;'";
     }
 
@@ -574,9 +574,10 @@ if (curl_error($ch)) {
 
 <main id="currentYearDeliveries"
 <?php
-    if($_SESSION['ShowInquires'] == 1){
+    if($_SESSION['ShowInquires'] == 1 || $_SESSION['SearchClear'] == 1){
         echo "style='display : block;'";
         $_SESSION['ShowInquires'] = null;
+        $_SESSION['SearchClear'] = null;
     }
 
 ?>
@@ -596,9 +597,35 @@ if (curl_error($ch)) {
         </div>
         <br>
         <div class="table-container_2">
-            <div class="search-bar">
+            <div class="search-bar" style="display: flex; gap: 10px;align-items: center;">
                 <input type="text" id="searchInputss" onkeyup="searchTabless()" placeholder="Search for names..">
+                <input type="button" onclick="clearSearch()" value="Clear Search" style="background-color: #1da0f2;color: #fff;cursor: pointer;">
+                
             </div>
+
+            <!-- 
+                SCRIPT
+             -->
+                <script>
+                            function clearSearch(){
+                                Swal.fire({
+                        title: "Are you sure?",
+                        text: "Do you want to Clear Search ??!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Clear Now!"
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.href="../BackEnd/clearSearch.php"; 
+                        }
+                        });
+                    }
+                </script>
+             <!-- 
+                END OF SCRIPT
+              -->
             <table id="myTable_2">
                 <thead>
                     <tr class="header_2">
@@ -643,7 +670,7 @@ if (curl_error($ch)) {
     </main>
     <script>
         let currentPage = 1;
-        const rowsPerPage = 3;
+        const rowsPerPage = 12;
         let rows = Array.from(document.querySelectorAll('#myTable_2 tbody tr'));
 
         function searchTabless() {
