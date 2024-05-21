@@ -643,3 +643,23 @@ label.valid {
   font-size: calc(var(--size) / 5);
   color: var(--primary);
 }
+
+
+.preloader{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: #000000bb;
+  z-index: 100;
+  color: #ffffff;
+  text-align: center;
+}
+
+.content{
+  position: relative;
+  margin-top: 160px;
+  transform: translate(0% , 0%);
+}
+

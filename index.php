@@ -19,6 +19,27 @@ session_start();
 </head>
 <body>
 
+    <div class="preloader" id="loader">
+        <div class="content">
+        <h1 style="font-size: 25px;color: rgb(252, 95, 95);">Setting Up Your Working Environment .. !</h1>
+        <p style="font-size: 16px;color: #fff;">Just Wait a Second !!</p>
+        <img src="./images/animi.gif" alt="" style="width: 200px;height: auto;">
+        </div>
+    </div>
+
+    <script>
+        var loader =document.getElementById("loader");
+        window.addEventListener("load" , function() {
+            loader.style.display = "none";
+        })
+
+        function displyLoader(){
+            loader.style.display = "block";
+        }
+    </script>
+
+
+
     <div class="main">
         
         <!-- Sing in  Form -->
@@ -49,7 +70,7 @@ session_start();
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
                             </div>
                             <div class="form-group form-button">
-                                <input type="submit" name="login" id="signin" class="form-submit" value="Log in"/>
+                                <input type="submit" name="login" id="signin" onclick="displyLoader()" class="form-submit" value="Log in"/>
                             </div>
                         </form>
                        

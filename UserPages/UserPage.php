@@ -91,6 +91,7 @@ if (curl_error($ch)) {
     <link rel="stylesheet" href="style.css">
     <title>East Link | Navala</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -111,7 +112,7 @@ if (curl_error($ch)) {
                     <a href="#">Overview</a>
                 </div>
                 <div class="item" onclick="displyInquires_c()">
-                    <i class='bx bx-home-alt-2'></i>
+                    <i class='bx bx-notepad'></i>
                     <a href="#"><?php echo $year.' ';  ?> Inquires</a>
                 </div>
                 <div class="item" onclick="displyUsers()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
@@ -124,8 +125,11 @@ if (curl_error($ch)) {
                     <i class='bx bxs-add-to-queue'></i>
                     <a href="#">Add User</a>
                 </div>
-                <div class="item" id="active" onclick="clearTable()">
-                    <i class='bx bx-power-off'></i>
+                <div class="item" onclick="ClearAllCurrentData()" style="<?php if($_SESSION['AdminAccess'] == 1){echo 'display:flex;';} 
+                else {echo 'display:none;';} ?>">
+                <span class="material-symbols-outlined">
+                    sync_problem
+                </span>
                     <a href="#">Clear <?php echo $year;?></a>
                 </div>
                 <div class="item" id="active" onclick="logoutfunction()">
@@ -141,6 +145,32 @@ if (curl_error($ch)) {
            
 
         </aside>
+
+        <script>
+           async function  ClearAllCurrentData(){
+                const { value: password } = await Swal.fire({
+                title: "Enter your password",
+                input: "password",
+                inputLabel: "Password",
+                inputPlaceholder: "Enter your password",
+                inputAttributes: {
+                    maxlength: "100",
+                    autocapitalize: "off",
+                    autocorrect: "off"
+                }
+                });
+                if (password === "ClearAll@2024") {
+
+                    location.href="../BackEnd/Tables/ClearCurrent.php";
+                }else{
+                    Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Provide Correct Password To Continive this Task !",
+                    });
+                }
+            }
+        </script>
 
         <script>
             function logoutfunction(){
@@ -231,7 +261,7 @@ if (curl_error($ch)) {
                 <input type="date" value="2023-10-15">
             </div>
 
-            <div class="planning">
+            <!-- <div class="planning">
                 <div class="item">
                     <div class="left">
                         <div class="icon">
@@ -280,7 +310,7 @@ if (curl_error($ch)) {
                     </div>
                     <i class='bx bx-dots-vertical-rounded'></i>
                 </div>
-            </div>
+            </div> -->
         </main>
         <!-- end of dashbord -->
 
